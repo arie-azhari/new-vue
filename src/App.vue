@@ -61,22 +61,99 @@
           </div>
         </div>
         <div class="w-1/2 pr-10">
-          <div class="flex flex-col space-y-[200px] w-full">
+          <div
+            :class="
+              !item.isMobile
+                ? 'flex  flex-col space-y-[-70px] w-full'
+                : 'flex flex-row flex-wrap'
+            "
+          >
             <img
-              :style="`z-index:${10 - idx}; transform: scale(${1-(idx/10)});`"
+              v-show="!item.isMobile"
+              class="ring-8 ring-gray-700 rounded-lg"
+              :style="`z-index:${10 - idx}; transform: scale(${1 - idx / 20});`"
               v-for="(it, idx) in item.images"
-              :class="
-                item.isMobile
-                  ? (idx + 1) % 2
-                    ? ' self-start w-2/5'
-                    : 'self-end w-2/5'
-                  : (idx + 1) % 2
-                  ? 'self-start w-4/5'
-                  : 'self-end w-4/5'
-              "
+              :class="(idx + 1) % 2 ? 'self-start w-4/5' : 'self-end w-4/5'"
               :src="getSrc(it)"
               :key="idx"
             />
+            <div
+              v-show="item.isMobile"
+              v-for="(it, idx) in item.images"
+              :key="idx"
+              class="w-1/2"
+              :class="(idx + 1) % 2 ? 'mt-0' : 'mt-28'"
+            >
+              <img
+                class="border-8 rounded-lg border-gray-600"
+                :src="getSrc(it)"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- skills section -->
+    <div
+      id="SkillParent"
+      class="relative h-screen overflow-x-hidden flex items-center"
+    >
+      <div
+        id="Skill"
+        class="about absolute tracking-wider z-0"
+        style="font-size: 250px; color: #eeeeee"
+      >
+        SKILLS
+      </div>
+      <div
+        class="
+          flex
+          space-y-20
+          flex-col
+          z-10
+          w-full
+          container
+          mx-auto
+          text-4xl
+          font-light
+          tracking-wide
+        "
+      >
+        <div class="flex space-x-10">
+          <div class="w-1/2">
+            <ul class="space-y-2">
+              <li>React</li>
+              <li>React Native</li>
+              <li>Vue</li>
+              <li>Electron</li>
+              <li>Typescript</li>
+              <li>NodeJs</li>
+            </ul>
+          </div>
+          <div class="w-1/2">
+            <ul class="space-y-2">
+              <li>Responsive Design</li>
+              <li>Testing & Debugging</li>
+              <li>Clean Architecture</li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex space-x-10">
+          <div class="w-1/2">
+            <ul class="space-y-2">
+              <li>Rapid Prototyping</li>
+              <li>Functional Programming</li>
+              <li>Interaction Development</li>
+            </ul>
+          </div>
+          <div class="w-1/2">
+            <ul class="space-y-2">
+              <li>VS Code</li>
+              <li>Github Cli</li>
+              <li>Figma</li>
+              <li>Postman</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -99,6 +176,8 @@ export default defineComponent({
     const onScroll = () => {
       const screenHeight = window.top.scrollY;
       const addTransform = document.getElementById("About");
+      const skill = document.getElementById("Skill");
+      const skillParent = document.getElementById("SkillParent");
       const secondPageHeigth = state.height * 2;
       const percentageSecondPage = (screenHeight / secondPageHeigth) * 100;
       const secondPageWidhPercentage =
@@ -106,6 +185,17 @@ export default defineComponent({
 
       addTransform!.style.transform = `translateX(${Math.round(
         secondPageWidhPercentage / 2 - 200
+      )}px)`;
+
+      const height = document.documentElement.scrollHeight;
+      const scrollPosition = window.scrollY;
+      const skillPageheight = skillParent!.offsetHeight;
+      const skillScrollYPosition =
+        screenHeight - (screenHeight - skillPageheight);
+      const currentSkill = scrollPosition - (height - skillPageheight)
+
+      skill!.style.transform = `translateX(${Math.round(
+        -currentSkill
       )}px)`;
     };
     const myExperience = [
@@ -115,34 +205,34 @@ export default defineComponent({
         jobdesc: "Front-end Developer",
         desc: "CMS web app for sales management",
         type: "Web App",
-        images: ["Suite01", "Suite02", "Suite03", "Suite04"],
+        images: ["Bsi01", "Bsi02", "Bsi03"],
       },
+      // {
+      //   id: "02",
+      //   title: "Qasir",
+      //   jobdesc: "Front-end Developer",
+      //   desc: "Cashier app for merchants",
+      //   type: "Desktop App",
+      //   images: ["Suite01", "Suite02", "Suite03", "Suite04"],
+      // },
       {
         id: "02",
-        title: "Qasir",
-        jobdesc: "Front-end Developer",
-        desc: "Cashier app for merchants",
-        type: "Desktop App",
-        images: ["Suite01", "Suite02", "Suite03", "Suite04"],
-      },
-      {
-        id: "03",
         title: "E-Procurement PINDAD",
         jobdesc: "Front-end Developer",
         desc: "Auction app for vendor",
         type: "Web App",
-        images: ["Suite01", "Suite02", "Suite03", "Suite04"],
+        images: ["Eproc01", "Eproc02", "Eproc03"],
       },
       {
-        id: "04",
+        id: "03",
         title: "KPI PINDAD",
         jobdesc: "Front-end Developer",
         desc: "App for count Key Performance Indicator to all employees",
         type: "Web App",
-        images: ["Suite01", "Suite02", "Suite03", "Suite04"],
+        images: ["Kpi01", "Kpi02", "Kpi03"],
       },
       {
-        id: "05",
+        id: "04",
         title: "Lion Parcel",
         jobdesc: "Fullstack Developer",
         desc: "Delivery and merchant app",
@@ -151,7 +241,7 @@ export default defineComponent({
         isMobile: true,
       },
       {
-        id: "06",
+        id: "05",
         title: "Refactory Suite",
         jobdesc: "Front-end Developer",
         desc: "Users and Tasks management app for company usage",
@@ -159,12 +249,12 @@ export default defineComponent({
         images: ["Suite01", "Suite02", "Suite03", "Suite04"],
       },
       {
-        id: "07",
+        id: "06",
         title: "Epitome Global",
         jobdesc: "Front-end Developer",
         desc: "Digital learning app managed by Epitome based on Singapore",
         type: "Web App",
-        images: ["Epitome03", "Epitome01", "Epitome02", "Epitome04"],
+        images: ["Epitome01", "Epitome02", "Epitome04"],
       },
     ];
 
