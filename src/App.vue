@@ -158,6 +158,30 @@
         </div>
       </div>
     </div>
+
+    <!-- contact section -->
+    <div
+      id="ContactContainer"
+      class="relative h-screen overflow-x-hidden flex items-center"
+    >
+      <div
+        id="Contact"
+        class="about absolute text-center w-full tracking-wider z-0"
+        style="font-size: 250px; color: #eeeeee"
+      >
+        CONTACT
+      </div>
+      <div class="w-full container mx-auto flex z-10 justify-evenly text-4xl tracking-wide font-light">
+        <a class="hover:text-gray-500 transition duration-500" target="_blank" href="https://github.com/sluxz3r">Github</a>
+        <a class="hover:text-gray-500 transition duration-500" target="_blank" href="mailto:iniarieazhari@gmail.com">Email</a>
+        <a class="hover:text-gray-500 transition duration-500" target="_blank" href="https://www.linkedin.com/in/arie-azhari-b15311147/"
+          >Linkedin</a
+        >
+        <a class="hover:text-gray-500 transition duration-500" target="_blank" href="https://arieahzari.site">Portfolio</a>
+        <a class="hover:text-gray-500 transition duration-500" target="_blank" href="https://instagram.com/topglobaluranus">Instagram</a>
+        <a class="hover:text-gray-500 transition duration-500" target="_blank" href="https://wa.me/081313134207">Whatsapp</a>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -178,6 +202,8 @@ export default defineComponent({
       const addTransform = document.getElementById("About");
       const skill = document.getElementById("Skill");
       const skillParent = document.getElementById("SkillParent");
+      const contact = document.getElementById("Contact");
+      const contactContainer = document.getElementById("ContactContainer");
       const secondPageHeigth = state.height * 2;
       const percentageSecondPage = (screenHeight / secondPageHeigth) * 100;
       const secondPageWidhPercentage =
@@ -189,14 +215,21 @@ export default defineComponent({
 
       const height = document.documentElement.scrollHeight;
       const scrollPosition = window.scrollY;
-      const skillPageheight = skillParent!.offsetHeight;
-      const skillScrollYPosition =
-        screenHeight - (screenHeight - skillPageheight);
-      const currentSkill = scrollPosition - (height - skillPageheight)
 
-      skill!.style.transform = `translateX(${Math.round(
-        -currentSkill
-      )}px)`;
+      const skillPageheight = skillParent!.offsetHeight;
+      const currentSkill = scrollPosition - (height - skillPageheight);
+
+      const contactPageheight = contactContainer!.offsetHeight;
+      const currentContact =
+        Math.round(scrollPosition + contactPageheight) -
+        (height - contactPageheight);
+
+      skill!.style.transform = `translateX(${Math.round(-currentSkill)}px)`;
+      const percentSkill = (currentContact / contactPageheight) * 100;
+
+      console.log("percentSkill", percentSkill);
+
+      contact!.style.transform = `scale(${0.5 + percentSkill / 100})`;
     };
     const myExperience = [
       {
