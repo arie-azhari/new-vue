@@ -244,7 +244,7 @@
         <a
           class="hover:text-gray-500 transition duration-500"
           target="_blank"
-          href="https://wa.me/081313134207"
+          href="https://wa.me/6281313134207"
           >Whatsapp</a
         >
       </div>
