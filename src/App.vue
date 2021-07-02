@@ -1,66 +1,70 @@
 <template>
-  <div id="myapp" class="min-h-screen bg-white">
+  <div id="myapp" class="min-h-screen bg-white lg:p-0">
     <!-- first section -->
     <div id="first-section" class="h-screen flex justify-center items-center">
       <transition name="myname" appear>
-        <div class="flex flex-col space-y-4 text-center">
-          <h1 class="text-9xl font-yellowtail tracking-wider">Arie Azhari</h1>
-          <p class="text-5xl">Front-end Developer</p>
+        <div class="flex flex-col space-y-2 lg:space-y-4 text-center">
+          <h1 class="text-6xl lg:text-9xl font-yellowtail tracking-wider">
+            Arie Azhari
+          </h1>
+          <p class="text-2xl lg:text-5xl">Front-end Developer</p>
         </div>
       </transition>
     </div>
     <!-- second section -->
-    <div class="relative h-screen overflow-x-hidden">
+    <div class="relative mb-44 lg:h-screen lg:mb-0 overflow-x-hidden px-8">
       <div
         id="About"
-        class="about absolute tracking-wider z-0"
+        class="about hidden lg:block absolute tracking-wider z-0"
         style="font-size: 250px; color: #eeeeee"
       >
         ABOUT ME
       </div>
+
       <div
         class="
-          text-4xl
+          lg:text-4xl
           font-light
-          absolute
+          lg:absolute
           z-10
-          top-32
+          lg:top-32
           w-2/3
           leading-normal
           right-28
           tracking-wide
         "
       >
+        <div class="lg:hidden font-medium">ABOUT ME</div>
         A courteous and enthusiastic software engineer, graduating as a nursing
         diploma, yet interested in web programming and developing apps.
       </div>
     </div>
 
     <!-- third section -->
-    <div class="min-h-screen h-full flex flex-col space-y-20">
+    <div class="min-h-screen h-full flex flex-col lg:space-y-20">
       <div
-        class="w-full flex h-full"
+        class="w-full flex lg:flex-row flex-col h-full"
         v-for="(item, index) in myExperience"
         :key="index"
       >
-        <div class="w-1/2 p-8 h-screen sticky top-0">
+        <div class="lg:w-1/2 p-8 lg:h-screen z-10 sticky top-0 bg-white">
           <div class="h-full relative">
-            <div class="flex flex-col space-y-28">
-              <p class="text-3xl">{{ item.id }}</p>
-              <div class="pl-16 flex flex-col space-y-3">
-                <p class="text-5xl font-semibold mb-5 tracking-wide">
+            <div class="flex flex-col lg:space-y-28">
+              <p class="lg:text-3xl">{{ item.id }}</p>
+              <div class="lg:pl-16 flex flex-col space-y-3">
+                <p class="lg:text-5xl font-semibold mb-5 tracking-wide">
                   {{ item.title }}
                 </p>
-                <p class="text-3xl font-medium tracking-wide">
+                <p class="lg:text-3xl font-medium tracking-wide">
                   {{ item.jobdesc }}
                 </p>
-                <p class="text-3xl tracking-wide">{{ item.desc }}</p>
+                <p class="lg:text-3xl tracking-wide">{{ item.desc }}</p>
               </div>
             </div>
-            <p class="absolute bottom-0 text-3xl">{{ item.type }}</p>
+            <p class="lg:absolute lg:bottom-0 lg:text-3xl">{{ item.type }}</p>
           </div>
         </div>
-        <div class="w-1/2 pr-10">
+        <div class="w-full lg:w-1/2 lg:pr-10 z-0 px-8">
           <div
             :class="
               !item.isMobile
@@ -97,11 +101,11 @@
     <!-- skills section -->
     <div
       id="SkillParent"
-      class="relative h-screen overflow-x-hidden flex items-center"
+      class="relative h-screen overflow-x-hidden flex items-center px-8 lg:px-0"
     >
       <div
         id="Skill"
-        class="about absolute tracking-wider z-0"
+        class="about absolute tracking-wider z-0 hidden lg:block"
         style="font-size: 250px; color: #eeeeee"
       >
         SKILLS
@@ -109,17 +113,18 @@
       <div
         class="
           flex
-          space-y-20
+          lg:space-y-20
           flex-col
           z-10
           w-full
           container
           mx-auto
-          text-4xl
+          lg:text-4xl
           font-light
           tracking-wide
         "
       >
+        <div class="lg:hidden font-medium mb-4">SKILLS</div>
         <div class="flex space-x-10">
           <div class="w-1/2">
             <ul class="space-y-2">
@@ -162,24 +167,86 @@
     <!-- contact section -->
     <div
       id="ContactContainer"
-      class="relative h-screen overflow-x-hidden flex items-center"
+      class="
+        relative
+        lg:h-screen
+        overflow-x-hidden
+        flex
+        items-center
+        px-8
+        lg:px-0
+        mb-28
+        lg:mb-0
+      "
     >
       <div
         id="Contact"
-        class="about absolute text-center w-full tracking-wider z-0"
+        class="
+          about
+          lg:absolute
+          text-center
+          w-full
+          tracking-wider
+          z-0
+          hidden
+          lg:block
+        "
         style="font-size: 250px; color: #eeeeee"
       >
         CONTACT
       </div>
-      <div class="w-full container mx-auto flex z-10 justify-evenly text-4xl tracking-wide font-light">
-        <a class="hover:text-gray-500 transition duration-500" target="_blank" href="https://github.com/sluxz3r">Github</a>
-        <a class="hover:text-gray-500 transition duration-500" target="_blank" href="mailto:iniarieazhari@gmail.com">Email</a>
-        <a class="hover:text-gray-500 transition duration-500" target="_blank" href="https://www.linkedin.com/in/arie-azhari-b15311147/"
+      <div
+        class="
+          w-full
+          container
+          mx-auto
+          flex
+          lg:flex-row
+          flex-col
+          z-10
+          justify-evenly
+          lg:text-4xl
+          tracking-wide
+          font-light
+        "
+      >
+        <div class="lg:hidden font-medium mb-4">CONTACT</div>
+        <a
+          class="hover:text-gray-500 transition duration-500"
+          target="_blank"
+          href="https://github.com/sluxz3r"
+          >Github</a
+        >
+        <a
+          class="hover:text-gray-500 transition duration-500"
+          target="_blank"
+          href="mailto:iniarieazhari@gmail.com"
+          >Email</a
+        >
+        <a
+          class="hover:text-gray-500 transition duration-500"
+          target="_blank"
+          href="https://www.linkedin.com/in/arie-azhari-b15311147/"
           >Linkedin</a
         >
-        <a class="hover:text-gray-500 transition duration-500" target="_blank" href="https://arieahzari.site">Portfolio</a>
-        <a class="hover:text-gray-500 transition duration-500" target="_blank" href="https://instagram.com/topglobaluranus">Instagram</a>
-        <a class="hover:text-gray-500 transition duration-500" target="_blank" href="https://wa.me/081313134207">Whatsapp</a>
+        <a
+          class="hover:text-gray-500 transition duration-500"
+          target="_blank"
+          href="https://arieahzari.site"
+          >Portfolio</a
+        >
+        <a
+          class="hover:text-gray-500 transition duration-500"
+          target="_blank"
+          href="https://instagram.com/topglobaluranus"
+          >Instagram</a
+        >
+        <a
+          class="hover:text-gray-500 transition duration-500"
+          target="_blank"
+          href="https://wa.me/081313134207"
+          >Whatsapp</a
+        >
       </div>
     </div>
   </div>
@@ -226,9 +293,6 @@ export default defineComponent({
 
       skill!.style.transform = `translateX(${Math.round(-currentSkill)}px)`;
       const percentSkill = (currentContact / contactPageheight) * 100;
-
-      console.log("percentSkill", percentSkill);
-
       contact!.style.transform = `scale(${0.5 + percentSkill / 100})`;
     };
     const myExperience = [
